@@ -1,0 +1,6 @@
+pandas
+numpy
+jugaad-data
+backtesting
+python-dotenv
+gdeltdoc
