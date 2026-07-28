@@ -15,10 +15,16 @@ This is being built chunk by chunk, each as its own PR into `master`:
 
 1. Scaffold + repo setup *(this PR)*
 2. Historical price data fetch (`jugaad-data`)
-3. Baseline backtest engine (`Backtesting.py`, SMA crossover)
+3. Baseline backtest engine (`Backtesting.py`, SMA crossover — a strategy that goes
+   long when a short-period moving average crosses above a longer-period one, and
+   exits/shorts on the reverse crossover; used here as the no-news baseline)
 4. Historical news headline fetch (GDELT, dated)
-5. Local sentiment scoring (FinBERT, CPU)
-6. Sentiment-gated strategy + baseline comparison
+5. Local sentiment scoring (FinBERT — a BERT model fine-tuned on financial text —
+   scores each headline positive/negative/neutral, aggregated into one daily
+   sentiment score per stock)
+6. Sentiment-gated strategy + baseline comparison (same SMA crossover, but a signal
+   only triggers a trade when that day's sentiment score isn't negative; compared
+   side by side against the Chunk 3 baseline to see if sentiment adds anything)
 
 Live execution (Zerodha Kite Connect for orders, Upstox for live ticks) is a later,
 separate phase — not part of this simulation POC.
